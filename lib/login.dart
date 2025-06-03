@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:uuk/home.dart';
 import 'button_navbar.dart'; // Use relative import if button_nav_bar.dart is in the same directory
 
 class LoginPage extends StatefulWidget {
@@ -66,6 +65,10 @@ void _login() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Login'),
+        backgroundColor: Colors.red,
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
