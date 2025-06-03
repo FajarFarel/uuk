@@ -3,6 +3,7 @@ import 'home.dart';
 import 'login.dart';
 import 'profil.dart';
 import 'recipedetail.dart';
+import 'package:uuk/splashscreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,8 +24,9 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
         ),
       ),
-      initialRoute: '/',
+      initialRoute: '/splash',
       routes: {
+        '/splash': (context) => const Splashscreen(),
         '/': (context) => const LoginPage(),
         '/home': (context) {
           final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
