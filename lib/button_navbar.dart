@@ -39,30 +39,54 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.grey,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+  bottomNavigationBar: BottomNavigationBar(
+    currentIndex: _selectedIndex,
+    selectedItemColor: Colors.red,
+    unselectedItemColor: Colors.grey,
+    onTap: (index) {
+      if (index == 2) {
+        // Logout dipilih
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: const Text('Konfirmasi Logout'),
+            content: const Text('Apakah kamu yakin ingin logout?'),
+            actions: [
+              TextButton(
+                child: const Text('Batal'),
+                onPressed: () => Navigator.pop(context),
+              ),
+              TextButton(
+                child: const Text('Logout'),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Tutup dialog
+                  Navigator.of(context).pushReplacementNamed('/Logout'); // ganti sesuai route kamu
+                },
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.logout),
-            label: 'Logout',
-          ),
-        ],
+        );
+      } else {
+        setState(() {
+          _selectedIndex = index;
+        });
+      }
+    },
+    items: const [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: 'Home',
       ),
-    );
+      BottomNavigationBarItem(
+        icon: Icon(Icons.person),
+        label: 'Profil',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.logout),
+        label: 'Logout',
+      ),
+    ],
+  ),
+);
   }
 }
