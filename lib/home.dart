@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _showRecipeDialog(BuildContext context, Recipe recipe) {
+  void _showRecipeDialog(BuildContext context, Recipe recipe, rating) {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
@@ -62,6 +62,7 @@ class _HomePageState extends State<HomePage> {
                   child: Image.network(recipe.image!, height: 180),
                 ),
               const SizedBox(height: 10),
+              Text('⭐ Rating: ${recipe.rating}'),
               Text('🍽️ Porsi: ${recipe.servings}'),
               Text('⏱️ Persiapan: ${recipe.prepTimeMinutes} menit'),
               Text('🔥 Masak: ${recipe.cookTimeMinutes} menit'),
@@ -126,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                             : const Icon(Icons.fastfood),
                         title: Text(recipe.name),
                         subtitle: Text(recipe.tags.join(', ')),
-                        onTap: () => _showRecipeDialog(context, recipe),
+                        onTap: () => _showRecipeDialog(context, recipe, recipe.rating),
                       );
                     },
                   ),
