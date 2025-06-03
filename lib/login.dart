@@ -59,9 +59,6 @@ void _login() {
     );
   });
 }
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,62 +68,64 @@ void _login() {
       ),
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: _pickImage,
-                child: Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: _image != null
-                      ? Image.file(_image!, fit: BoxFit.cover)
-                      : const Center(child: Text('gambar bebas')),
-                ),
-              ),
-              const SizedBox(height: 32),
-              TextField(
-                controller: _nameController,
-                decoration: const InputDecoration(
-                  hintText: 'Masukkan username',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  hintText: 'Masukkan password',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: _login,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                  ),
-                  child: const Text('Login',
-                      style: TextStyle(color: Colors.white)),
-                ),
-              ),
-              if (_error != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 12),
-                  child: Text(
-                    _error!,
-                    style: const TextStyle(color: Colors.red),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: _pickImage,
+                  child: Container(
+                    width: 150,
+                    height: 150,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: _image != null
+                        ? Image.file(_image!, fit: BoxFit.cover)
+                        : const Center(child: Text('gambar bebas')),
                   ),
                 ),
-            ],
+                const SizedBox(height: 32),
+                TextField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    hintText: 'Masukkan username',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    hintText: 'Masukkan password',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: _login,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                    ),
+                    child: const Text('Login',
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+                if (_error != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12),
+                    child: Text(
+                      _error!,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
